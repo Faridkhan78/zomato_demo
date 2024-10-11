@@ -106,7 +106,7 @@
 					<div class="col-md-6 col-lg-5">
 						<div class="login-box bg-white box-shadow border-radius-10">
 							<div class="login-title">
-								<h2 class="text-center text-primary">Register To DeskApp</h2>
+								<h2 class="text-center text-primary">Update To DeskApp</h2>
 							</div>
 							{{-- <form>
 								
@@ -182,11 +182,13 @@
 									</div>
 								</div>
 							</form> --}}
-                            <form action="{{ route('registerSave') }}" method="POST">
+                            <form action="{{route('update',$user->id)}}" method="POST">
                                 @csrf
+                                @method('PUT')
+                                
                                 <div class="input-group custom">
                                     <input type="text" class="form-control form-control-lg" placeholder="Username"
-                                        name="username" />
+                                        name="username" value="{{$user->username}}" />
     
                                     <div class="input-group-append custom">
                                         <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
@@ -207,7 +209,7 @@
     
                                 <div class="input-group custom">
                                     <input type="email" class="form-control form-control-lg" placeholder="Email"
-                                        name="email" />
+                                        name="email" value="{{$user->email}}" />
                                     <div class="input-group-append custom">
                                         <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                     </div>
@@ -220,7 +222,7 @@
                                 </span>
                                 <div class="input-group custom">
                                     <input type="password" class="form-control form-control-lg" placeholder="Password"
-                                        name="password" />
+                                        name="password" value="{{$user->password}}"/>
                                     <div class="input-group-append custom">
                                         <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                     </div>
@@ -233,7 +235,7 @@
     
                                 <div class="input-group custom">
                                     <input type="text" class="form-control form-control-lg" placeholder="Moble Number"
-                                        name="mobile" />
+                                        name="mobile" value="{{$user->mobile}}"/>
                                     <div class="input-group-append custom">
                                         <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                     </div>
@@ -284,7 +286,7 @@
 			</div>
 		</div>
 		<!-- welcome modal start -->
-		<div class="welcome-modal">
+		{{-- <div class="welcome-modal">
 			<button class="welcome-modal-close">
 				<i class="bi bi-x-lg"></i>
 			</button>
@@ -292,7 +294,7 @@
 				class="w-100 border-0"
 				src="https://embed.lottiefiles.com/animation/31548"
 			></iframe>
-			<div class="text-center">
+			{{-- <div class="text-center">
 				<h3 class="h5 weight-500 text-center mb-2">
 					Open source
 					<span role="img" aria-label="gratitude">❤️</span>
@@ -319,8 +321,8 @@
 						>Fork</a
 					>
 				</div>
-			</div>
-			<div class="text-center mb-1">
+			</div> --}}
+			{{-- <div class="text-center mb-1">
 				<div>
 					<a
 						href="https://github.com/dropways/deskapp"
@@ -337,7 +339,7 @@
 					defer="defer"
 					src="https://buttons.github.io/buttons.js"
 				></script>
-			</div>
+			</div> --}}
 			<a
 				href="https://github.com/dropways/deskapp"
 				target="_blank"
@@ -352,10 +354,10 @@
 			<div class="d-none d-md-flex justify-content-center h1 mb-0 text-danger">
 				<i class="fa fa-html5"></i>
 			</div>
-		</div>
-		<button class="welcome-modal-btn">
+		{{-- </div> - --}}
+		{{-- <button class="welcome-modal-btn">
 			<i class="fa fa-download"></i> Download
-		</button>
+		</button> --}}
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>

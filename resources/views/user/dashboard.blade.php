@@ -87,9 +87,9 @@
 			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
 		</script>
 		<!-- End Google Tag Manager -->
-	</head>     
+	</head>
 	<body>
-		{{-- <div class="pre-loader">
+		<div class="pre-loader">
 			<div class="pre-loader-box">
 				<div class="loader-logo">
 					<img src="vendors/images/deskapp-logo.svg" alt="" />
@@ -100,12 +100,9 @@
 				<div class="percent" id="percent1">0%</div>
 				<div class="loading-text">Loading...</div>
 			</div>
-		</div> --}}
+		</div>
 
-        @include('latout.header')
-
-        {{-- @yield('header') --}}
-		{{-- <div class="header">
+		<div class="header">
 			<div class="header-left">
 				<div class="menu-icon bi bi-list"></div>
 				<div
@@ -288,7 +285,7 @@
 								><i class="dw dw-help"></i> Help</a
 							>
 							<a class="dropdown-item" href="login.html"
-								><i class="dw dw-logout"></i> Log Out111</a
+								><i class="dw dw-logout"></i> Log Out</a
 							>
 						</div>
 					</div>
@@ -299,12 +296,9 @@
 					/></a>
 				</div>
 			</div>
-		</div> --}}
+		</div>
 
-
-        {{-- @yield('slider') --}}
-        @include('latout.slidebar')
-		{{-- <div class="right-sidebar">
+		<div class="right-sidebar">
 			<div class="sidebar-title">
 				<h3 class="weight-600 font-16 text-blue">
 					Layout Settings
@@ -472,9 +466,9 @@
 					</div>
 				</div>
 			</div>
-		</div> --}}
+		</div>
 
-		{{-- <div class="left-side-bar">
+		<div class="left-side-bar">
 			<div class="brand-logo">
 				<a href="index.html">
 					<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
@@ -707,13 +701,11 @@
 					</ul>
 				</div>
 			</div>
-		</div> --}}
+		</div>
 		<div class="mobile-menu-overlay"></div>
 
 		<div class="main-container">
-            @yield('content')
-
-			{{-- <div class="xs-pd-20-10 pd-ltr-20">
+			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="title pb-20">
 					<h2 class="h3 mb-0">Hospital Overview</h2>
 				</div>
@@ -1456,11 +1448,10 @@
 						>Ankit Hingarajiya</a
 					>
 				</div>
-			</div> --}}
+			</div>
 		</div>
-		{{-- @include('latout.footer') --}}
 		<!-- welcome modal start -->
-		{{-- <div class="welcome-modal">
+		<div class="welcome-modal">
 			<button class="welcome-modal-close">
 				<i class="bi bi-x-lg"></i>
 			</button>
@@ -1528,30 +1519,22 @@
 			<div class="d-none d-md-flex justify-content-center h1 mb-0 text-danger">
 				<i class="fa fa-html5"></i>
 			</div>
-		</div> --}}
-		{{-- <button class="welcome-modal-btn">
+		</div>
+		<button class="welcome-modal-btn">
 			<i class="fa fa-download"></i> Download
-		</button> --}}
+		</button>
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="vendors/scripts/core.js"></script>
 		<script src="vendors/scripts/script.min.js"></script>
 		<script src="vendors/scripts/process.js"></script>
 		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
 		<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
 		<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-		<!-- buttons for Export datatable -->
-		<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
-		<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
-		<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
-		<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
-		<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
-		<script src="src/plugins/datatables/js/pdfmake.min.js"></script>
-		<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
-		<!-- Datatable Setting js -->
-		<script src="vendors/scripts/datatable-setting.js"></script>
+		<script src="vendors/scripts/dashboard3.js"></script>
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe

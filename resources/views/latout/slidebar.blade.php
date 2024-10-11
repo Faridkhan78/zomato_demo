@@ -193,7 +193,7 @@
                         ><span class="mtext">Home</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index.html">Dashboard style 1</a></li>
+                        <li><a href="{{route('dashboard')}}">Dashboard style 1</a></li>
                         <li><a href="index2.html">Dashboard style 2</a></li>
                         <li><a href="index3.html">Dashboard style 3</a></li>
                     </ul>

@@ -608,27 +608,15 @@
 
 
 
-                                                    <a class="dropdown-item" href="{{ route('update.page', $userItem->id)}}"><i
+                                                    <a class="dropdown-item" href="#"><i
                                                             class="dw dw-edit2"></i> Edit</a>
 
-                                                            {{-- <td><a href="{{ route('update.page', $userItem->id) }}"
-                                                                class="btn btn-warning btn-sm">UPDATE</a>
-                                                        </td>  --}}
-
-                                                    {{-- <form method="post" action="{{ route('delete', $userItem->id) }}">
+                                                    <form method="post" action="{{ route('delete', $userItem->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <a class="dropdown-item"><i
                                                                 class="dw dw-delete-3"></i> Delete</a>
-                                                    </form> --}}
-                                                    <form id="delete-form-{{ $userItem->id }}" method="post" action="{{ route('delete', $userItem->id) }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="javascript:void(0)" onclick="document.getElementById('delete-form-{{ $userItem->id }}').submit();" class="dropdown-item">
-                                                            <i class="dw dw-delete-3"></i> Delete
-                                                        </a>
                                                     </form>
-                                                    
 
                                                 </div>
                                             </div>
@@ -1111,14 +1099,3 @@
 </body>
 
 </html>
-
-
-
-{{-- <form id="delete-form-{{ $userItem->id }}" method="post" action="{{ route('delete', $userItem->id) }}">
-    @csrf
-    @method('DELETE')
-    <a href="javascript:void(0)" onclick="document.getElementById('delete-form-{{ $userItem->id }}').submit();" class="dropdown-item">
-        <i class="dw dw-delete-3"></i> Delete
-    </a>
-</form> --}}
-

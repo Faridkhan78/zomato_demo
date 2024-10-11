@@ -162,7 +162,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="header-right">
+			{{-- <div class="header-right">
 				<div class="dashboard-setting user-notification">
 					<div class="dropdown">
 						<a
@@ -289,7 +289,8 @@
 						><img src="vendors/images/github.svg" alt=""
 					/></a>
 				</div>
-			</div>
+			</div> --}}
+			@extends('latout.header')
 		</div>
 
 		<div class="right-sidebar">
