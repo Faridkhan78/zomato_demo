@@ -123,6 +123,11 @@
                                             ><i class="icon-copy dw dw-user1"></i
                                         ></span>
                                     </div>
+									<span style="color: red;">
+										@error('email')
+											{{ $message }}
+										@enderror
+									</span>
                                 </div>
                                 <div class="input-group custom">
                                     <input
@@ -136,6 +141,11 @@
                                             ><i class="dw dw-padlock1"></i
                                         ></span>
                                     </div>
+									<span style="color: red;">
+										@error('password')
+											{{ $message }}
+										@enderror
+									</span>
                                 </div>
                                 <div class="row pb-30">
                                     <div class="col-6">

@@ -9,6 +9,9 @@
     <meta charset="utf-8" />
     <title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png" />
@@ -248,20 +251,18 @@
                 <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
                 <div class="sidebar-radio-group pb-10 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-1" checked="" />
-                        <label class="custom-control-label" for="sidebaricon-1"><i
-                                class="fa fa-angle-down"></i></label>
+                        <input type="radio" id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-1" checked="" />
+                        <label class="custom-control-label" for="sidebaricon-1"><i class="fa fa-angle-down"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-2" />
-                        <label class="custom-control-label" for="sidebaricon-2"><i
-                                class="ion-plus-round"></i></label>
+                        <input type="radio" id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-2" />
+                        <label class="custom-control-label" for="sidebaricon-2"><i class="ion-plus-round"></i></label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon"
-                            class="custom-control-input" value="icon-style-3" />
+                        <input type="radio" id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
+                            value="icon-style-3" />
                         <label class="custom-control-label" for="sidebaricon-3"><i
                                 class="fa fa-angle-double-right"></i></label>
                     </div>
@@ -270,8 +271,8 @@
                 <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
                 <div class="sidebar-radio-group pb-30 mb-10">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon"
-                            class="custom-control-input" value="icon-list-style-1" checked="" />
+                        <input type="radio" id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
+                            value="icon-list-style-1" checked="" />
                         <label class="custom-control-label" for="sidebariconlist-1"><i
                                 class="ion-minus-round"></i></label>
                     </div>
@@ -360,8 +361,8 @@
                             <span class="micon bi bi-table"></span><span class="mtext">Tables</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="basic-table.html">Basic Tables</a></li>
-                            <li><a href="datatable.html">DataTables</a></li>
+                            <li><a href="{{route('basictable')}}">Basic Tables</a></li>
+                        <li><a href="{{route('basicdatatable')}}">DataTables</a></li>
                         </ul>
                     </li>
                     <li>
@@ -543,7 +544,7 @@
                                         <a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">
-                                        DataTable
+                                        DataTabless
                                     </li>
                                 </ol>
                             </nav>
@@ -608,10 +609,16 @@
 
 
 
-                                                    <a class="dropdown-item" href="{{ route('update.page', $userItem->id)}}"><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('update.page', $userItem->id) }}"><i
                                                             class="dw dw-edit2"></i> Edit</a>
 
-                                                            {{-- <td><a href="{{ route('update.page', $userItem->id) }}"
+                                                    <button type="button" class="btn dw dw-edit2"
+                                                        onclick="openModel('{{ $userItem->id}}','{{ $userItem->username }}','{{ $userItem->email}}','{{ $userItem->password}}','{{ $userItem->mobile}}')">
+                                                        Update
+                                                    </button>
+
+                                                    {{-- <td><a href="{{ route('update.page', $userItem->id) }}"
                                                                 class="btn btn-warning btn-sm">UPDATE</a>
                                                         </td>  --}}
 
@@ -621,14 +628,20 @@
                                                         <a class="dropdown-item"><i
                                                                 class="dw dw-delete-3"></i> Delete</a>
                                                     </form> --}}
-                                                    <form id="delete-form-{{ $userItem->id }}" method="post" action="{{ route('delete', $userItem->id) }}">
+                                                    <form id="delete-form-{{ $userItem->id }}" method="post"
+                                                        action="{{ route('delete', $userItem->id) }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <a href="javascript:void(0)" onclick="document.getElementById('delete-form-{{ $userItem->id }}').submit();" class="dropdown-item">
+                                                        <a href="javascript:void(0)"
+                                                            onclick="document.getElementById('delete-form-{{ $userItem->id }}').submit();"
+                                                            class="dropdown-item">
                                                             <i class="dw dw-delete-3"></i> Delete
                                                         </a>
                                                     </form>
-                                                    
+
+                                                    <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i>
+                                                        Gmail</a>
+
 
                                                 </div>
                                             </div>
@@ -1122,3 +1135,78 @@
     </a>
 </form> --}}
 
+
+{{-- update model --}}
+<div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Page</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('update')}}" method="POST">
+                        
+                        @csrf
+                           
+                        <input type="text" name="id" id="id">
+                        <div class="input-group custom">
+                            <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                name="username" id="username"/>
+
+                            <div class="input-group-append custom">
+                                <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+                            </div>
+
+                        </div>
+                        <div class="input-group custom">
+                            <input type="email" class="form-control form-control-lg" placeholder="Email"
+                                name="email" id="email"/>
+                            <div class="input-group-append custom">
+                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                            </div>
+                           
+                        </div>
+
+                        <div class="input-group custom">
+                            <input type="password" class="form-control form-control-lg" placeholder="Password"
+                                name="password" id="password"/>
+                            <div class="input-group-append custom">
+                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group custom">
+                            <input type="text" class="form-control form-control-lg" placeholder="Mobile Number"
+                                name="mobile" id="mobile"/>
+                            <div class="input-group-append custom">
+                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                       
+
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    function openModel(id,username,email,password,mobile) {
+        $('#id').val(id);
+        $('#username').val(username);
+        $('#email').val(email);
+        $('#password').val(password);
+        $('#mobile').val(mobile);
+        $('#exampleModal').modal('show');
+    }
+</script>

@@ -64,7 +64,7 @@ class UserController extends Controller
 
 
         if ($user) {
-            return redirect()->route('login');
+            return redirect()->route('loginpage');
         }
         // validate request data
         //    $data =$request->validate([
@@ -103,7 +103,12 @@ class UserController extends Controller
 
     public function showDashboard() {
         // dd(auth()->user());
-        return view('user.dashboard');
+        if(Auth::check()){
+            return view('user.dashboard');
+        }else{
+            return redirect()->route('loginpage');
+        }
+        // return view('user.dashboard');
     }
 
     public function deleteUser($id)
@@ -119,7 +124,7 @@ class UserController extends Controller
         return view('user.updateuser', compact('user'));
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(Request $request)
     {
         $data = $request->validate([
             'username' => 'required',
@@ -127,7 +132,8 @@ class UserController extends Controller
             'password'=>'required',
             'mobile'=>'required'
         ]);
-        $user = User::where(['id' => $id])->update([
+        $user = User::where(['id' => $request['id']])->update([
+
             'username' => $request['username'],
             'email' => $request['email'],
             'password' => $request['password'],
