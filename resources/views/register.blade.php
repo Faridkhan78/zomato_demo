@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>Regisete</title>
+		<title>Register</title>
 
 		<!-- Site favicon -->
 		<link
@@ -90,7 +90,7 @@
 				</div>
 				<div class="login-menu">
 					<ul>
-						<li><a href="register.html">Register</a></li>
+						<li><a href="{{route('loginpage')}}">Login</a></li>
 					</ul>
 				</div>
 			</div>
@@ -232,8 +232,8 @@
                                 </span>
     
                                 <div class="input-group custom">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Moble Number"
-                                        name="mobile" />
+                                    <input type="text" class="form-control form-control-lg" onkeypress="return isNumberKey(event)" placeholder="Moble Number"
+                                        name="mobile" maxlength="10" />
                                     <div class="input-group-append custom">
                                         <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                                     </div>
@@ -374,3 +374,14 @@
 		<!-- End Google Tag Manager (noscript) -->
 	</body>
 </html>
+<script>
+	function isNumberKey(evt) {
+		var charCode = (evt.which) ? evt.which : evt.keyCode;
+		// Allow only numbers (48-57 represent '0'-'9')
+		if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+			return false;
+		}
+		return true;
+	}
+</script>
+	

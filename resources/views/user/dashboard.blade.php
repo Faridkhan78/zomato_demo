@@ -519,7 +519,7 @@
 								><span class="mtext">Tables</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="basic-table.html">Basic Tables</a></li>
+								<li><a href="basicdatatable">Basic Tables</a></li>
 								<li><a href="datatable.html">DataTables</a></li>
 							</ul>
 						</li>

@@ -580,7 +580,7 @@
                                     <th>Id</th>
                                     <th class="table-plus datatable-nosort">Username</th>
                                     <th>Email</th>
-                                    <th>Password</th>
+                                    <th>Status</th>
                                     <th>Mobile</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
@@ -591,7 +591,7 @@
                                         <td>{{ $userItem->id }}</td>
                                         <td>{{ $userItem->username }}</td>
                                         <td>{{ $userItem->email }}</td>
-                                        <td>{{ $userItem->password }}</td>
+                                        <td>{{ $userItem->status ? 'Approved' : 'Disapproved' }}</td>
                                         <td>{{ $userItem->mobile }}</td>
 
                                         <td>
@@ -609,13 +609,23 @@
 
 
 
-                                                    <a class="dropdown-item"
+                                                    {{-- <a class="dropdown-item"
                                                         href="{{ route('update.page', $userItem->id) }}"><i
-                                                            class="dw dw-edit2"></i> Edit</a>
+                                                            class="dw dw-edit2"></i> Edit</a> --}}
+                                                    @if($userItem->status)
+                                                        <a class="dropdown-item"
+                                                        href="{{ route('update.disapprove', $userItem->id) }}"><i
+                                                            class="dw dw-edit2"></i> Disapprove</a>   
+                                                    @else
+                                                        <a class="dropdown-item"
+                                                        href="{{ route('update.approve', $userItem->id) }}"><i
+                                                            class="dw dw-edit2"></i> Approve</a>
+                                                    @endif
+
 
                                                     <button type="button" class="btn dw dw-edit2"
                                                         onclick="openModel('{{ $userItem->id}}','{{ $userItem->username }}','{{ $userItem->email}}','{{ $userItem->password}}','{{ $userItem->mobile}}')">
-                                                        Update
+                                                        Edit
                                                     </button>
 
                                                     {{-- <td><a href="{{ route('update.page', $userItem->id) }}"
@@ -639,7 +649,7 @@
                                                         </a>
                                                     </form>
 
-                                                    <a class="dropdown-item" href="#"><i class="fas fa-envelope"></i>
+                                                    <a class="dropdown-item" id="{{ $userItem->id }}" href="{{route('sendEmail', $userItem->id)}}"><i class="fas fa-envelope"></i>
                                                         Gmail</a>
 
 

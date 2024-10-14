@@ -83,6 +83,7 @@
 		<!-- End Google Tag Manager -->
 	</head>
 	<body>
+		
 		<div class="pre-loader">
 			<div class="pre-loader-box">
 				<div class="loader-logo">
@@ -704,7 +705,7 @@
 				<div class="min-height-200px">
 					<div class="page-header">
 						<div class="row">
-							<div class="col-md-6 col-sm-12">
+							{{-- <div class="col-md-6 col-sm-12">
 								<div class="title">
 									<h4>Form</h4>
 								</div>
@@ -718,22 +719,12 @@
 										</li>
 									</ol>
 								</nav>
-							</div>
+							</div> --}}
 							<div class="col-md-6 col-sm-12 text-right">
+								Post
 								<div class="dropdown">
-									<a
-										class="btn btn-secondary dropdown-toggle"
-										href="#"
-										role="button"
-										data-toggle="dropdown"
-									>
-										January 2018
-									</a>
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" href="#">Export List</a>
-										<a class="dropdown-item" href="#">Policies</a>
-										<a class="dropdown-item" href="#">View Assets</a>
-									</div>
+									
+									
 								</div>
 							</div>
 						</div>
@@ -745,20 +736,11 @@
 								<h4 class="text-blue h4">Default Basic Forms</h4>
 								<p class="mb-30">All bootstrap element classies</p>
 							</div>
-							<div class="pull-right">
-								<a
-									href="#basic-form1"
-									class="btn btn-primary btn-sm scroll-click"
-									rel="content-y"
-									data-toggle="collapse"
-									role="button"
-									><i class="fa fa-code"></i> Source Code</a
-								>
-							</div>
+							
 						</div>
 						<form>
 							<div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Text</label>
+								<label class="col-sm-12 col-md-2 col-form-label"><b>Text</b></label>
 								<div class="col-sm-12 col-md-10">
 									<input
 										class="form-control"
@@ -767,7 +749,18 @@
 									/>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group">
+								<label><b>Description</b></label>
+								<textarea class="form-control"></textarea>
+							</div>
+							<div class="form-group">
+								<label><b>Custom file input</b></label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" />
+									<label class="custom-file-label">Choose file</label>
+								</div>
+							</div>
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Search</label>
 								<div class="col-sm-12 col-md-10">
 									<input
@@ -776,8 +769,8 @@
 										type="search"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 								<div class="col-sm-12 col-md-10">
 									<input
@@ -786,8 +779,8 @@
 										type="email"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">URL</label>
 								<div class="col-sm-12 col-md-10">
 									<input
@@ -796,8 +789,8 @@
 										type="url"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label"
 									>Telephone</label
 								>
@@ -808,8 +801,8 @@
 										type="tel"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label"
 									>Password</label
 								>
@@ -820,28 +813,31 @@
 										type="password"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Number</label>
 								<div class="col-sm-12 col-md-10">
 									<input class="form-control" value="100" type="number" />
 								</div>
-							</div>
+							</div> --}}
 							<div class="form-group row">
 								<label
 									for="example-datetime-local-input"
 									class="col-sm-12 col-md-2 col-form-label"
-									>Date and time</label
+									><b>Date and time</b></label
 								>
 								<div class="col-sm-12 col-md-10">
 									<input
 										class="form-control datetimepicker"
-										placeholder="Choose Date anf time"
+										placeholder="Choose Date and time"
 										type="text"
 									/>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Date</label>
 								<div class="col-sm-12 col-md-10">
 									<input
@@ -870,8 +866,8 @@
 										type="text"
 									/>
 								</div>
-							</div>
-							<div class="form-group row">
+							</div> --}}
+							{{-- <div class="form-group row">
 								<label class="col-sm-12 col-md-2 col-form-label">Select</label>
 								<div class="col-sm-12 col-md-10">
 									<select class="custom-select col-12">
@@ -895,7 +891,7 @@
 								<div class="col-sm-12 col-md-10">
 									<input class="form-control" value="50" type="range" />
 								</div>
-							</div>
+							</div> --}}
 						</form>
 						<div class="collapse collapse-box" id="basic-form1">
 							<div class="code-box">
@@ -1017,7 +1013,7 @@
 					<div class="pd-20 card-box mb-30">
 						<div class="clearfix">
 							<div class="pull-left">
-								<h4 class="text-blue h4">horizontal Basic Forms</h4>
+								<h4 class="text-blue h4">horizontal Basic Formsf</h4>
 								<p class="mb-30">All bootstrap element classies</p>
 							</div>
 							<div class="pull-right">
@@ -1185,7 +1181,11 @@
 								/>
 							</div>
 							<div class="form-group">
-								<label>Textarea</label>
+								<label>Textareaf</label>
+								<textarea class="form-control"></textarea>
+							</div>
+							<div class="form-group">
+								<label>Textareaf</label>
 								<textarea class="form-control"></textarea>
 							</div>
 							<div class="form-group">
@@ -1308,8 +1308,8 @@
 		<label>input plaintext</label>
 		<input type="text" readonly class="form-control-plaintext" value="email@example.com">
 	</div>
-	<div class="form-group">
-		<label>Textarea</label>
+	<div class="">
+		<label>Textareaf</label>
 		<textarea class="form-control"></textarea>
 	</div>
 	<div class="form-group">

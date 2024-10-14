@@ -6,51 +6,124 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\welcomeemail;
 
 class UserController extends Controller
 {
-    public function data(){
+    public function data()
+    {
         return view('user.datatable');
     }
 
-    public function basictable(){
+    public function basictable()
+    {
         return view('user.basictable');
     }
 
-    public function basicdatatable(){
+    public function basicdatatable()
+    {
         // dd(1);
         return view('user.basicdatatable');
     }
+    // public function login(Request $request)
+    // {
+    // //    return view('user.login');
+    //     // dd(Hash::make(1234));
+    //     $credentials = $request->validate([
+
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+
+    //     ]);
+    //     if (Auth::attempt($credentials)) {
+    //         return redirect()->route('dashboard');
+    //     } else {
+    //         return redirect()->back()->with('error', 'Login failed');
+    //     }
+    // }
+
     public function login(Request $request)
     {
-    //    return view('user.login');
-        // dd(Hash::make(1234));
-        $credentials = $request->validate([
 
-            'email' => 'required|email',
-            'password' => 'required',
 
-        ]);
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
+        $credentials = $request->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required',
+            ],
+            [
+                'email.required' => 'Email is required',
+                'email.email' => 'Please enter a valid email address',
+                'password.required' => 'Password is required',
+                'password.password' => 'Please enter a valid password',
+            ]
+
+        );
+
+        // Find user by email
+      //  $user = User::where('email', $credentials['email'])->first();
+
+        // Check if the user exists and has status = 1
+        // if ($user && $user->status == 1) {
+        //     // Attempt login
+        //     if (Auth::attempt($credentials)) {
+        //         return redirect()->route('dashboard');
+        //     } else {
+
+        //         return redirect()->back()->with('error', 'Login failed. Invalid credentials.');
+        //     }
+        // } else {
+            // dd($credentials);
+            // User either does not exist or status is not 1
+          //  return redirect()->back()->with('error', 'email or password is not a valid');
+        // }
+
+        // new 
+        $user = User::where('email', $credentials['email'])->first();
+
+        // Check if the user exists
+        if ($user) {
+            
+            // Check if the user's account is active (status = 1)
+            if ($user->status == 1) {
+                // Attempt login
+                if (Auth::attempt($credentials)) {
+                    return redirect()->route('dashboard');
+                } else {
+                    // Invalid credentials
+                    return redirect()->back()->with('error', 'Login failed. Invalid credentials.');
+                }
+            } else {
+                // User's account is inactive
+                return redirect()->back()->with('error', 'Your account is inactive. Please contact support.');
+            }
         } else {
-            return redirect()->back()->with('error', 'Login failed');
+            // User does not exist
+            return redirect()->back()->with('error', 'Email or password is not valid.');
         }
+
+
+        // end new code
+
+
     }
+
 
     public function loginPage(Request $request)
     {
-       return view('user.login');
+        // dd(1);
+        return view('user.login');
     }
 
     public function register(Request $request)
     {
         // dd($request->all());
         $data = $request->validate([
-            'username' => 'required',
+            'username' => 'required|string|min:3|max:30',
             'email' => 'required|email',
             'password' => 'required',
-            'mobile' => 'required'
+            'mobile' => 'required|numeric|digits:10'
         ]);
 
         // $user = User::create([
@@ -82,8 +155,8 @@ class UserController extends Controller
     {
         $user = User::get();
         // dd($user);
-       return view('user.basicdatatable', compact('user'));
-       // return view('basicdatatable')->with('user', $user);
+        return view('user.basicdatatable', compact('user'));
+        // return view('basicdatatable')->with('user', $user);
     }
     public function logout()
     {
@@ -92,7 +165,7 @@ class UserController extends Controller
 
         //  return view('dashboard');
     }
-  
+
     // public function dashboardPage()
     // {
     //     return view('dashboard');
@@ -101,19 +174,21 @@ class UserController extends Controller
     //     // }
     // }
 
-    public function showDashboard() {
+    public function showDashboard()
+    {
         // dd(auth()->user());
-        if(Auth::check()){
+        if (Auth::check()) {
             return view('user.dashboard');
-        }else{
+        } else {
             return redirect()->route('loginpage');
+            //return redirect()->route('login')->with('error', 'Please log in first.');
         }
         // return view('user.dashboard');
     }
 
     public function deleteUser($id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
         $user->delete();
         return redirect()->route('basicdatatable');
     }
@@ -124,13 +199,33 @@ class UserController extends Controller
         return view('user.updateuser', compact('user'));
     }
 
+    public function updateApprove($id)
+    {
+        $user = User::where(['id' => $id])->update([
+            'status' => 1,
+        ]);
+        if ($user) {
+            return redirect()->route('basicdatatable');
+        }
+    }
+
+    public function updateDisapprove($id)
+    {
+        $user = User::where(['id' => $id])->update([
+            'status' => 0,
+        ]);
+        if ($user) {
+            return redirect()->route('basicdatatable');
+        }
+    }
+
     public function updateUser(Request $request)
     {
         $data = $request->validate([
             'username' => 'required',
             'email' => 'required|email',
-            'password'=>'required',
-            'mobile'=>'required'
+            'password' => 'required',
+            'mobile' => 'required'
         ]);
         $user = User::where(['id' => $request['id']])->update([
 
@@ -143,6 +238,25 @@ class UserController extends Controller
             return redirect()->route('basicdatatable');
         }
     }
-    
 
+    public function sendEmail($id)
+    {
+        $user = User::find($id);
+        // $toEmail = "aghariaali123@gmail.com";
+        // $toEmail = "akbarchaudhari10@gmail.com";
+        $toEmail = "fluhar76@gmail.com";
+        $moreUser = $user->email;
+        $message = "Hello, Welcome to our Website";
+        $subject = "Welcome to Zomato";
+        $details = [
+            'name' => 'Akbarbhai',
+            'product' => 'Pizza',
+            'price' => '950',
+        ];
+        $describe = "Thank you for Pizza Order";
+
+        $request = Mail::to($toEmail)->cc($moreUser)->send(new WelcomeEmail($message, $subject, $details, $describe));
+
+        dd($request);
+    }
 }
