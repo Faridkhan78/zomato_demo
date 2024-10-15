@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -21,9 +22,9 @@ Route::view('register', 'register')->name('register');
 
 //Route::view('login', 'login')->name('login');
 
-//Route::get('/', [UserController::class, 'loginPage'])->name('loginpage');
+Route::get('/', [UserController::class, 'loginPage'])->name('loginpage');
 
-Route::get('/', [UserController::class, 'loginPage'])->middleware('guest')->name('login');
+//Route::get('/', [UserController::class, 'loginPage'])->name('login');
 
 
 Route::post('loginMatch', [UserController::class, 'login'])->name('loginMatch');
@@ -56,4 +57,25 @@ Route::get('/updatePageA/{id}',[UserController::class,'updateApprove'])->name('u
 Route::get('/updatePageD/{id}',[UserController::class,'updateDisapprove'])->name('update.disapprove');
 
 Route::any('send-email/{id}',[UserController::class,'sendEmail'])->name('sendEmail');
+
+
+// post 
+
+// Route::get('/data',[UserController::class,'data'])->name('datatable');
+
+Route::post('data',[PostController::class,'postregister'])->name('data');
+Route::view('user.data', [PostController::class,'postregisterview'])->name('datatable');
+
+Route::get('postview',[PostController::class,'viewPostall'])->name('postviewall')->middleware('auth');
+
+Route::delete('delete/{id}',[PostController::class,'deletePost'])->name('delete');
+
+
+ Route::post('/updatepost',[PostController::class,'updatePost'])->name('updatePost');
+ Route::get('/updatePost/{id}',[PostController::class,'updatePost'])->name('update.post');
+
+
+ Route::get('/updatePageAP/{id}',[PostController::class,'updateApprovePost'])->name('update.approvepost');
+ Route::get('/updatePageDP/{id}',[PostController::class,'updateDisapprovePost'])->name('update.disapprovepost');
+
 
