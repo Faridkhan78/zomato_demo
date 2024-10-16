@@ -22,7 +22,7 @@ Route::view('register', 'register')->name('register');
 
 //Route::view('login', 'login')->name('login');
 
-Route::get('/', [UserController::class, 'loginPage'])->name('loginpage');
+Route::get('/loginPage', [UserController::class, 'loginPage'])->name('loginpage');
 
 //Route::get('/', [UserController::class, 'loginPage'])->name('login');
 
@@ -72,10 +72,19 @@ Route::delete('delete/{id}',[PostController::class,'deletePost'])->name('delete'
 
 
  Route::post('/updatepost',[PostController::class,'updatePost'])->name('updatePost');
- Route::get('/updatePost/{id}',[PostController::class,'updatePost'])->name('update.post');
+ Route::get('/updatePost/{id}',[PostController::class,'editpost'])->name('update.post');
 
 
  Route::get('/updatePageAP/{id}',[PostController::class,'updateApprovePost'])->name('update.approvepost');
  Route::get('/updatePageDP/{id}',[PostController::class,'updateDisapprovePost'])->name('update.disapprovepost');
 
 
+// Review Card
+
+// Route::get('/', function () {
+//     return view('review_card');
+// });
+
+Route::get('/reviewCardData', [PostController::class,'reviewPost'])->name('reviewCardData');
+
+Route::get('/', [PostController::class,'showCards'])->name('reviewCardData');

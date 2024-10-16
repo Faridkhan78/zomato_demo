@@ -30,6 +30,7 @@ class PostController extends Controller
                                  
         // Handle file upload
          $filePath = $request->file('image_path')->store('uploads', 'public');
+
          $user = Post::create([
             'title' => $request->title,
             'description' => $request->description,
@@ -57,25 +58,33 @@ class PostController extends Controller
         return redirect()->route('postviewall');
     }
     
-    public function updatePost($id)
+    public function editpost($id)
     {
         $post = Post::find($id);
         return view('user.postviewall', compact('post'));
     }
-    public function updateUser(Request $request)
+    public function updatePost(Request $request)
     {
+        
+        $id=$request->input('id');
         $data = $request->validate([
+                       
             'title' => 'required|string|min:3|max:30',
             'description' => 'required',
             'image_path' => 'required',
             'published_date' => 'required'
         ]);
-        $post = Post::where(['id' => $request['id']])->update([
+        
+        $filePath = $request->file('image_path')->store('uploads', 'public');
+        $publishedDate = Carbon::createFromFormat('d F Y h:i a', $request->published_date)->format('Y-m-d H:i:s');
+
+
+        $post = Post::where(['id' =>$id])->update([
 
             'title' => $request['title'],
             'description' => $request['description'],
-            'image_path' => $request['image_path'],
-            'published_date' => $request['published_date'],
+            'image_path' => $filePath,
+            'published_date' => $publishedDate,
         ]);
         if ($post) {
             return redirect()->route('postviewall');
@@ -102,5 +111,17 @@ class PostController extends Controller
         }
     }
 
+    public function reviewPost($id){
+        $post = Post::find($id);
+        return view('user.review_card', compact('post'));
+    }
 
+    public function showCards()
+    {
+        // Fetching data from the database (assuming you have a 'posts' table)
+        $card = Post::all(); 
+
+        // Returning the data to the view
+        return view('review_card', compact('card'));
+    }
 }

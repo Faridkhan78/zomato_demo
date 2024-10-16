@@ -103,9 +103,7 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Email or password is not valid.');
         }
 
-
         // end new code
-
 
     }
 

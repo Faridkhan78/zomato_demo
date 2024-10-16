@@ -770,66 +770,7 @@
 										<div class="alert alert-danger mb-1 mt-1">{{$message}}</div>
 								@enderror --}}
 							</div>
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Search</label>
-								<div class="col-sm-12 col-md-10">
-									<input
-										class="form-control"
-										placeholder="Search Here"
-										type="search"
-									/>
-								</div>
-							</div> --}}
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Email</label>
-								<div class="col-sm-12 col-md-10">
-									<input
-										class="form-control"
-										value="bootstrap@example.com"
-										type="email"
-									/>
-								</div>
-							</div> --}}
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">URL</label>
-								<div class="col-sm-12 col-md-10">
-									<input
-										class="form-control"
-										value="https://getbootstrap.com"
-										type="url"
-									/>
-								</div>
-							</div> --}}
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label"
-									>Telephone</label
-								>
-								<div class="col-sm-12 col-md-10">
-									<input
-										class="form-control"
-										value="1-(111)-111-1111"
-										type="tel"
-									/>
-								</div>
-							</div> --}}
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label"
-									>Password</label
-								>
-								<div class="col-sm-12 col-md-10">
-									<input
-										class="form-control"
-										value="password"
-										type="password"
-									/>
-								</div>
-							</div> --}}
-							{{-- <div class="form-group row">
-								<label class="col-sm-12 col-md-2 col-form-label">Number</label>
-								<div class="col-sm-12 col-md-10">
-									<input class="form-control" value="100" type="number" />
-								</div>
-							</div> --}}
+							
 							<div class="form-group row">
 								<label
 									for="example-datetime-local-input"

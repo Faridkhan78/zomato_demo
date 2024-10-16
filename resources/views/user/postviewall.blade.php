@@ -569,8 +569,11 @@
                     <div class="pd-20">
                         <h4 class="text-blue h4">Data Table Simple</h4>
                         <p class="mb-0">
-                            you can find more options
-                            <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a>
+                            you can add field
+                            {{-- <a class="text-primary" href="https://datatables.net/" target="_blank">Click Here</a> --}}
+                          
+                            <button class="btn btn-primary" onclick="window.location.href='{{ route('data') }}'">+Add Record</button>
+
                         </p>
                     </div>
                     <div class="pb-20">
@@ -594,12 +597,11 @@
                                         <td>{{ $userItem->title }}</td>
                                         <td>{{ $userItem->description }}</td>
                                         <td> <img src="{{ asset('storage/' . $userItem->image_path) }}"
-                                                alt="{{ $userItem->title }}" style="width: 100px; height: auto;"></td>
+                                                alt="{{ $userItem->title }}" style="width: 70px; height:70px;"></td>
                                         <td>{{ $userItem->published_date }}</td>
 
                                         <td>{{ $userItem->status ? 'Approved' : 'Disapproved' }}</td>
                                      
-
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
@@ -620,11 +622,11 @@
                                                             class="dw dw-edit2"></i> Edit</a> --}}
                                                     @if ($userItem->status)
                                                         <a class="dropdown-item"
-                                                            href="{{ route('update.disapprove', $userItem->id) }}"><i
+                                                            href="{{ route('update.disapprovepost', $userItem->id) }}"><i
                                                                 class="dw dw-edit2"></i> Disapprove</a>
                                                     @else
                                                         <a class="dropdown-item"
-                                                            href="{{ route('update.approve', $userItem->id) }}"><i
+                                                            href="{{ route('update.approvepost', $userItem->id) }}"><i
                                                                 class="dw dw-edit2"></i> Approve</a>
                                                     @endif
 
@@ -1165,9 +1167,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('updatePost') }}" method="POST">
+                    <form action="{{ route('updatePost') }}" method="POST" enctype="multipart/form-data">
+                         
 
                         @csrf
+                        {{-- @method('PATCH') --}}
 
                         <input type="hidden" name="id" id="id">
                         <div class="input-group custom">
@@ -1180,35 +1184,45 @@
 
                         </div>
                         <div class="">
-                            {{-- <input type="text" class="form-control form-control-lg"
-                                name="description" id="description" />
-                            <div class="input-group-append custom">
-                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
-                            </div> --}}
+                           
                             <div class="form-group">
 								{{-- <label><b>Description</b></label> --}}
 								<textarea class="form-control" name="description" id="description"></textarea>
 							</div>
                         </div>
 
+                      
+
+                        <div class="custom-file form-group">
+                            <img src="{{asset('/storage/'.$userItem->image_path)}}" class="img-thumbnail img-fluid" style="width: 120px">
+                            <input type="file" name="image_path" accept=".jpg,.png,.jpeg" class="form-control" />
+                            
+                            {{-- {{ $userItem->image_path }} --}}
+                            {{-- <label class="custom-file-label">Choose file</label> --}}
+                        </div>
+                        
+
                         {{-- <div class="input-group custom">
-                            <input type="password" class="form-control form-control-lg" 
-                                name="image_path" id="image_path" />
+                            <input type="text" class="form-control form-control-lg" 
+                                name="published_date" id="published_date" />
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                             </div>
                         </div> --}}
 
-                        <div class="custom-file form-group">
-                            <input type="file" name="image_path" accept=".jpg,.png,.jpeg" class="custom-file-input" />
-                            <label class="custom-file-label">Choose file</label>
-                        </div>
-
-                        <div class="input-group custom">
-                            <input type="text" class="form-control form-control-lg" 
-                                name="published_date" id="published_date" />
-                            <div class="input-group-append custom">
-                                <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+                        <div class="form-group row">
+                            <label
+                                for="example-datetime-local-input"
+                                class="col-sm-12 col-md-2 col-form-label"
+                                ><b>Date and time</b></label
+                            >
+                            <div class="col-sm-12 col-md-10">
+                                <input
+                                    class="form-control datetimepicker"
+                                    placeholder="Choose Date and time"
+                                    type="text"
+                                    name="published_date"
+                                />
                             </div>
                         </div>
 
@@ -1231,7 +1245,8 @@
         $('#id').val(id);
         $('#title').val(title);
         $('#description').val(description);
-        $('#image_path').val(image_path);
+        // $('#image_path').val(image_path);
+        $('#image_path').attr('src', image_path);
         $('#published_date').val(published_date);
         $('#exampleModal').modal('show');
     }

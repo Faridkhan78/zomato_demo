@@ -1157,8 +1157,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('update')}}" method="POST">
-                        
+                    <form action="{{route('update')}}" method="POST">                        
                         @csrf
                            
                         <input type="text" name="id" id="id">
@@ -1200,8 +1199,6 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
-                       
-
                     </form>
                 </div>
                
