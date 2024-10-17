@@ -345,7 +345,7 @@
                             <span class="micon bi bi-textarea-resize"></span><span class="mtext">Forms</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="form-basic.html">Form Basic</a></li>
+                            <li><a href="{{route('data')}}">Form Basic</a></li>
                             <li>
                                 <a href="advanced-components.html">Advanced Components</a>
                             </li>

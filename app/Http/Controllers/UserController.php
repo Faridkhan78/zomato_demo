@@ -111,7 +111,8 @@ class UserController extends Controller
     public function loginPage(Request $request)
     {
         // dd(1);
-        return view('user.login');
+        // return view('user.login');
+         return view('user.login');
     }
 
     public function register(Request $request)
@@ -255,6 +256,6 @@ class UserController extends Controller
 
         $request = Mail::to($toEmail)->cc($moreUser)->send(new WelcomeEmail($message, $subject, $details, $describe));
 
-        dd($request);
+        // dd($request);
     }
 }

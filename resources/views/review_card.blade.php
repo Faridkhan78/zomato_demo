@@ -6,6 +6,10 @@
     <meta charset="utf-8" />
     <title>ReviewCard</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Site favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png" />
@@ -53,8 +57,19 @@
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
     <!-- End Google Tag Manager -->
+
+    {{-- <style>
+        .card-img-custom {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+    </style> --}}
 </head>
-<body style="background-image: url('{{ asset('/images (1).jpg') }}'); background-size: cover; background-position: center;">
+{{-- <body style="background-image: url('{{ asset('storage/images (1).jpg') }}'); background-size: cover; background-position: center;"> --}}
+    <body style="background-image: url('{{ asset('storage/images (1).jpg') }}'); background-size: cover; background-position: center;">
+
 {{-- <body style="background-color: wheat; background-image: url('imageslogo.jpg'); background-size: cover; background-position: center;"> --}}
 {{-- <body style="background-color: wheat;"> --}}
     <div class="pre-loader">
@@ -580,7 +595,7 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <div class="page-header">
+                <div class="page-header ">
                     {{-- <div class="row">
 							<div class="col-md-12 col-sm-12">
 								<div class="title">
@@ -607,9 +622,9 @@
                 <div class="row clearfix">
                     @foreach ($card as $card)
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                        <div class="card card-box">
-                            <img class="card-img-top" src="{{ asset('storage/' . $card['image_path']) }}" alt="Card image cap" height="75px"/>
-                            <div class="card-body">
+                        <div class="card card-box" style="width: 100%; height: 318px;">
+                            <img class="card-img-top" src="{{ asset('storage/' . $card['image_path']) }}" alt="Card image cap" height="75px" style="width: 100%; height: 157px; object-fit: cover;" />
+                            <div class="card-body"  style="height: 100px;">
                                 <h5 class="card-title weight-500">{{ $card['title'] }}</h5>
                                 <p class="card-text">
                                     {{ $card['description'] }}
@@ -619,7 +634,6 @@
                         </div>
                     </div>
                     @endforeach
-                    
                 </div>
 
                 {{-- foreach loop --}}

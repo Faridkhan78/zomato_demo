@@ -1167,9 +1167,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('updatePost') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('updatePost')}}" method="POST" enctype="multipart/form-data">
                          
-
                         @csrf
                         {{-- @method('PATCH') --}}
 
@@ -1251,3 +1250,8 @@
         $('#exampleModal').modal('show');
     }
 </script>
+
+
+
+
+{{-- class="border-radius-100 box-shadow" --}}

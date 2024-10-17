@@ -500,7 +500,7 @@
 								><span class="mtext">Forms</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="form-basic.html">Form Basic</a></li>
+								<li><a href="{{route('data')}}">Form Basic</a></li>
 								<li>
 									<a href="advanced-components.html">Advanced Components</a>
 								</li>
@@ -518,7 +518,7 @@
 							</a>
 							<ul class="submenu">
 								<li><a href="basic-table.html">Basic Tables</a></li>
-								<li><a href="datatable.html">DataTables</a></li>
+								<li><a href="{{route('basicdatatable')}}">DataTables</a></li>
 							</ul>
 						</li>
 						<li>

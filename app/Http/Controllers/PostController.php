@@ -116,12 +116,36 @@ class PostController extends Controller
         return view('user.review_card', compact('post'));
     }
 
-    public function showCards()
-    {
-        // Fetching data from the database (assuming you have a 'posts' table)
-        $card = Post::all(); 
+    // public function showCards()
+    // {
+    //     // Fetching data from the database (assuming you have a 'posts' table)
+    //     $card = Post::all(); 
 
-        // Returning the data to the view
-        return view('review_card', compact('card'));
+        
+
+    //         if ($card->status == 1) {
+          
+    //     }else{
+    //         return redirect()->route('postviewall');
+    //     }
+
+
+    //     // Returning the data to the view
+    //     return view('review_card', compact('card'));
+    // }
+
+    public function showCards()
+{
+    // Fetch only approved posts (status = 1)
+    $card = Post::where('status', 1)->get(); 
+
+    // If no approved posts are found, redirect to the 'postviewall' route
+    if ($card->isEmpty()) {
+        return redirect()->route('postviewall');
     }
+
+    // Pass the approved posts to the view
+    return view('review_card', compact('card'));
+}
+
 }

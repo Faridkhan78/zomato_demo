@@ -204,7 +204,7 @@
                         ><span class="mtext">Forms</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{route('datatable')}}">Form Basicc</a></li>
+                        <li><a href="{{route('data')}}">Form Basicc</a></li>
                         <li>
                             <a href="advanced-components.html">Advanced Components</a>
                         </li>

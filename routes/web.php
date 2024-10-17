@@ -22,7 +22,7 @@ Route::view('register', 'register')->name('register');
 
 //Route::view('login', 'login')->name('login');
 
-Route::get('/loginPage', [UserController::class, 'loginPage'])->name('loginpage');
+Route::get('/loginpage', [UserController::class, 'loginPage'])->name('loginpage')->middleware('guest');
 
 //Route::get('/', [UserController::class, 'loginPage'])->name('login');
 
@@ -31,7 +31,7 @@ Route::post('loginMatch', [UserController::class, 'login'])->name('loginMatch');
 
 //Route::view('user/basicdatatable', 'basicdatatable')->name('basicdatatable');
 
-Route::get('basicdatatable',[UserController::class,'viewUserall'])->name('basicdatatable')->middleware('auth');
+Route::get('basicdatatable',[UserController::class,'viewUserall'])->name('basicdatatable');
 
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
@@ -40,7 +40,7 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
 
 //Route::view('dashboard', 'showDashboard')->name('dashboard');
-Route::get('dashboard', [UserController::class, 'showDashboard'])->name('dashboard')->middleware('auth');
+Route::get('dashboard', [UserController::class, 'showDashboard'])->name('dashboard');
 
 
 
@@ -87,4 +87,4 @@ Route::delete('delete/{id}',[PostController::class,'deletePost'])->name('delete'
 
 Route::get('/reviewCardData', [PostController::class,'reviewPost'])->name('reviewCardData');
 
-Route::get('/', [PostController::class,'showCards'])->name('reviewCardData');
+Route::get('/', [PostController::class,'showCards'])->name('reviewCardData')->middleware('guest');
